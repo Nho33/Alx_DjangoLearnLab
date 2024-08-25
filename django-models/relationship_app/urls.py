@@ -19,6 +19,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from models import Book
 from forms import BookForm
 from .views import list_books, LibraryDetailView path
+from django.urls import path
+from .views import list_books, LibraryDetailView
 
 # Create your views here.
 def book_list_view(request):
@@ -37,8 +39,7 @@ class LibraryDetails_view(DetailView):
     context = super().get_context_data(**kwargs)  # Get default context data
     book = self.get_object()  # Retrieve the current book instance
     context['average_rating'] = book.get_average_rating() 
-
-
+    
 class SignUpView(CreateView):
     form_class = UserCreationForm
     success_url = reverse_lazy("login")

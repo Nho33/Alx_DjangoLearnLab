@@ -119,3 +119,9 @@ def delete_book(request, book_id):
         book.delete()
         return redirect('book_list')
     return render(request, 'books/delete_book.html', {'book': book})
+#code to update views to show templates
+def list_books(request):
+    books = Book.objects.all()
+    return render(request, 'relationship_app/list_books.html', {'books': books})
+
+
