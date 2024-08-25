@@ -56,10 +56,7 @@ ROOT_URLCONF = 'LibraryProject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-           os.path.join(BASE_DIR, 'templates'),
-    os.path.join(BASE_DIR, 'relationship_app/templates'),
- ],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -69,6 +66,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
             ],
         },
+        'DIRS': [BASE_DIR /"templates"]
     },
 ]
 
