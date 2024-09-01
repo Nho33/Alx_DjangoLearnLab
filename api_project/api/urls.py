@@ -13,4 +13,5 @@ urlpatterns = [
     path('api-token-auth/', obtain_auth_token, name='api_token_auth'),
     path('', include(router.urls)),
     path('books/', BookList.as_view(), name='book_list'),
+    path('api/', include('api.urls')),
 ]
