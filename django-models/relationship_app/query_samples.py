@@ -1,18 +1,16 @@
-#SELECT * FROM books WHERE author = 'Example';
-#  
-#Library.objects.get(name=library_name)", "books.all()
-#Author.objects.get(name=author_name)", "objects.filter(author=author)
-#"Librarian.objects.get(library="
+from relationship_app.models import Author, Book, Library, Librarian
 
-# 1. Retrieve a Library object by name and get all its associated books
-library = Library.objects.get(name=library_name)
-books = library.book_set.all()  # If ForeignKey
-# or
-books = library.books.all()  # If ManyToManyField
+# Query all books by a specific author
+def books_by_author(author_name):
+    author = Author.objects.get(name=author_name)
+    return Book.objects.filter(author=author)
 
-# 2. Retrieve an Author object by name and filter books written by that author
-author = Author.objects.get(name=author_name)
-author_books = Book.objects.filter(author=author)
+# List all books in a library
+def books_in_library(library_name):
+    library = Library.objects.get(name=library_name)
+    return library.books.all()
 
-# 3. Retrieve a Librarian object by their associated library
-librarian = Librarian.objects.get(library__name=library_name)
+# Retrieve the librarian for a library
+def librarian_for_library(library_name):
+    library = Library.objects.get(name=library_name)
+    return Librarian.objects.get(library=library)
