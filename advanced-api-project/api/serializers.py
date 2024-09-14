@@ -1,4 +1,9 @@
 # BookSerializer: Serializes all fields of the Book model
+from rest_framework import serializers
+from .models import Author, Book
+from django.utils import timezone
+
+
 class BookSerializer(serializers.ModelSerializer):
     class Meta:
         model = Book
@@ -18,3 +23,18 @@ class AuthorSerializer(serializers.ModelSerializer):
         model = Author
         fields = ['name', 'books']
 
+    """
+    Serializer for the Author model.
+
+    This serializer handles the conversion of Author model instances to JSON format
+    and vice versa. It includes a nested representation of the author's books.
+
+    Fields:
+    - id: Automatically included by ModelSerializer.
+    - name: The author's name.
+    - books: A nested serialization of all books by this author.
+
+    The 'books' field uses the BookSerializer to provide a detailed representation
+    of each book associated with the author. This creates a nested structure in
+    the serialized data, allowing for a comprehensive view of an author and their works.
+    """
